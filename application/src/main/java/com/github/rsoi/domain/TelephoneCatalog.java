@@ -7,14 +7,14 @@ public class TelephoneCatalog {
 
     //vars
     private String nameOfTheTelephone;
-    private Double priceOfTheTelephone;
+    private int priceOfTheTelephone;
     private Double sizeOfTheScreen;
     private int amountOfRAM;
     private Boolean sdCardIsAvailable;
 
     private int matchCounter = 0;
 
-    public TelephoneCatalog(String nameOfTheTelephone, Double priceOfTheTelephone, Double sizeOfTheScreen, int amountOfRAM, Boolean sdCardIsAvailable){
+    public TelephoneCatalog(String nameOfTheTelephone, int priceOfTheTelephone, Double sizeOfTheScreen, int amountOfRAM, Boolean sdCardIsAvailable){
         this.nameOfTheTelephone = nameOfTheTelephone;
         this.priceOfTheTelephone = priceOfTheTelephone;
         this.sizeOfTheScreen = sizeOfTheScreen;
@@ -54,11 +54,11 @@ public class TelephoneCatalog {
         this.nameOfTheTelephone = nameOfTheTelephone;
     }
 
-    public Double getPriceOfTheTelephone() {
+    public int getPriceOfTheTelephone() {
         return priceOfTheTelephone;
     }
 
-    public void setPriceOfTheTelephone(Double priceOfTheTelephone) {
+    public void setPriceOfTheTelephone(int priceOfTheTelephone) {
         this.priceOfTheTelephone = priceOfTheTelephone;
     }
 

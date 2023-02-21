@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class UserPhoneData {
 
-    Double userMinimumPrice = -1.0;
-    Double userMaximumPrice = -1.0;
+    int userMinimumPrice = -1;
+    int userMaximumPrice = -1;
     int userRAM = 0;
     Double userSizeOfScreen = 0.0;
     Boolean userSDAvailable = null;
@@ -15,7 +15,7 @@ public class UserPhoneData {
         System.out.println("Enter minimum price");
         do {
             try {
-                userMinimumPrice = Double.parseDouble(scanner.next());
+                userMinimumPrice = Integer.parseInt(scanner.next());
             } catch (NumberFormatException e){
                 System.out.println("Error! Integers only");
             }
@@ -24,7 +24,7 @@ public class UserPhoneData {
         System.out.println("Enter maximum price");
         do {
             try {
-                userMaximumPrice = Double.parseDouble(scanner.next());
+                userMaximumPrice = Integer.parseInt(scanner.next());
             } catch (NumberFormatException e){
                 System.out.println("Error! Integers only");
             }
@@ -65,11 +65,11 @@ public class UserPhoneData {
         } while (userSDAvailable == null);
     }
 
-    public Double getUserMinimumPrice() {
+    public int getUserMinimumPrice() {
         return userMinimumPrice;
     }
 
-    public Double getUserMaximumPrice() {
+    public int getUserMaximumPrice() {
         return userMaximumPrice;
     }
 

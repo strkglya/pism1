@@ -9,11 +9,11 @@ public class TelephoneComparison {
 
     public static void main(String [] args){
 
-        TelephoneCatalog xiaomi = new TelephoneCatalog("Xiaomi Redmi Note 10 Pro",730.0,6.7, 8,true );
-        TelephoneCatalog samsung = new TelephoneCatalog("Samsung galaxy S20",1300.0,6.2, 8,true );
-        TelephoneCatalog iPhone = new TelephoneCatalog("Apple Iphone 13 Pro",2250.0,6.1, 4,false );
+        TelephoneCatalog xiaomi = new TelephoneCatalog("Xiaomi Redmi Note 10 Pro",730,6.7, 8,true );
+        TelephoneCatalog samsung = new TelephoneCatalog("Samsung galaxy S20",1300,6.2, 8,true );
+        TelephoneCatalog iPhone = new TelephoneCatalog("Apple Iphone 13 Pro",2250,6.1, 4,false );
 
-        ArrayList<TelephoneCatalog> telephonesArrayList =  new ArrayList<TelephoneCatalog>();
+        ArrayList<TelephoneCatalog> telephonesArrayList = new ArrayList<>();
         telephonesArrayList.add(xiaomi);
         telephonesArrayList.add(samsung);
         telephonesArrayList.add(iPhone);
@@ -44,17 +44,16 @@ public class TelephoneComparison {
                 case 2:
                     userPhoneData.searchForPhone();
 
-                    int matchCounter = 0;
-
-                    Double userMinPrice = userPhoneData.getUserMaximumPrice();
-                    Double userMaxPrice = userPhoneData.getUserMinimumPrice();
+                    int userMinPrice = userPhoneData.getUserMinimumPrice();
+                    int userMaxPrice = userPhoneData.getUserMaximumPrice();
                     Double userSizeOfScreen= userPhoneData.getUserSizeOfScreen();
                     int userRAM = userPhoneData.getUserRAM();
                     Boolean userSDAvailable = userPhoneData.getUserSDAvailable();
 
                     for (int index = 0; index<telephonesArrayList.size(); index++) {
-                        if (telephonesArrayList.get(index).getAmountOfRAM() == userRAM) {
+                        if (telephonesArrayList.get(index).getPriceOfTheTelephone()>userMinPrice & telephonesArrayList.get(index).getPriceOfTheTelephone()<userMaxPrice) {
                             telephonesArrayList.get(index).setMatchCounter(telephonesArrayList.get(index).getMatchCounter()+1);
+                            System.out.println("price");
                             System.out.println("xiaomi"+xiaomi.getMatchCounter());
                             System.out.println("samsung"+samsung.getMatchCounter());
                             System.out.println("iphone"+iPhone.getMatchCounter());
@@ -62,30 +61,42 @@ public class TelephoneComparison {
                     }
 
                     for (int index = 0; index<telephonesArrayList.size(); index++) {
-                        if (telephonesArrayList.get(index).getSizeOfTheScreen() == userSizeOfScreen) {
+                        if (telephonesArrayList.get(index).getSizeOfTheScreen().equals(userSizeOfScreen)) {
                             telephonesArrayList.get(index).setMatchCounter(telephonesArrayList.get(index).getMatchCounter()+1);
+                            System.out.println("size of the screen");
                             System.out.println("xiaomi"+xiaomi.getMatchCounter());
                             System.out.println("samsung"+samsung.getMatchCounter());
                             System.out.println("iphone"+iPhone.getMatchCounter());
-                            }
+                        }
+                    }
+
+                    for (int index = 0; index<telephonesArrayList.size(); index++) {
+                        if (telephonesArrayList.get(index).getAmountOfRAM() == userRAM) {
+                            telephonesArrayList.get(index).setMatchCounter(telephonesArrayList.get(index).getMatchCounter()+1);
+                            System.out.println("amount of RAM");
+                            System.out.println("xiaomi"+xiaomi.getMatchCounter());
+                            System.out.println("samsung"+samsung.getMatchCounter());
+                            System.out.println("iphone"+iPhone.getMatchCounter());
+                        }
                     }
 
                     for (int index = 0; index<telephonesArrayList.size(); index++) {
                         if (telephonesArrayList.get(index).getSdCardIsAvailable() == userSDAvailable) {
                             telephonesArrayList.get(index).setMatchCounter(telephonesArrayList.get(index).getMatchCounter()+1);
+                            System.out.println("SD");
                             System.out.println("xiaomi"+xiaomi.getMatchCounter());
                             System.out.println("samsung"+samsung.getMatchCounter());
                             System.out.println("iphone"+iPhone.getMatchCounter());
                         }
                     }
+
+                    int maximum = telephonesArrayList.get(0).getMatchCounter();
                     for (int index = 0; index<telephonesArrayList.size(); index++) {
-                        if (telephonesArrayList.get(index).getPriceOfTheTelephone()>userMinPrice && telephonesArrayList.get(index).getPriceOfTheTelephone()<userMaxPrice) {
-                            telephonesArrayList.get(index).setMatchCounter(telephonesArrayList.get(index).getMatchCounter()+1);
-                            System.out.println("xiaomi"+xiaomi.getMatchCounter());
-                            System.out.println("samsung"+samsung.getMatchCounter());
-                            System.out.println("iphone"+iPhone.getMatchCounter());
-                        }
-                }
+                        if (maximum < telephonesArrayList.get(index).getMatchCounter())
+                            maximum = telephonesArrayList.get(index).getMatchCounter();
+                    }
+                    System.out.println("max is"+maximum);
+
                 case 3:
                     break;
             }
