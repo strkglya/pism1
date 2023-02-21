@@ -8,11 +8,11 @@ public class TelephoneCatalog {
     //vars
     private String nameOfTheTelephone;
     private Double priceOfTheTelephone;
-    private Double minimumPrice;
-    private Double maximumPrice;
     private Double sizeOfTheScreen;
     private int amountOfRAM;
     private Boolean sdCardIsAvailable;
+
+    private int matchCounter = 0;
 
     public TelephoneCatalog(String nameOfTheTelephone, Double priceOfTheTelephone, Double sizeOfTheScreen, int amountOfRAM, Boolean sdCardIsAvailable){
         this.nameOfTheTelephone = nameOfTheTelephone;
@@ -46,8 +46,6 @@ public class TelephoneCatalog {
 
 
 
-
-
     public String getNameOfTheTelephone() {
         return nameOfTheTelephone;
     }
@@ -62,22 +60,6 @@ public class TelephoneCatalog {
 
     public void setPriceOfTheTelephone(Double priceOfTheTelephone) {
         this.priceOfTheTelephone = priceOfTheTelephone;
-    }
-
-    public Double getMinimumPrice() {
-        return minimumPrice;
-    }
-
-    public void setMinimumPrice(Double minimumPrice) {
-        this.minimumPrice = minimumPrice;
-    }
-
-    public Double getMaximumPrice() {
-        return maximumPrice;
-    }
-
-    public void setMaximumPrice(Double maximumPrice) {
-        this.maximumPrice = maximumPrice;
     }
 
     public Double getSizeOfTheScreen() {
@@ -102,5 +84,12 @@ public class TelephoneCatalog {
 
     public void setSdCardIsAvailable(Boolean sdCardIsAvailable) {
         this.sdCardIsAvailable = sdCardIsAvailable;
+    }
+    public int getMatchCounter() {
+        return matchCounter;
+    }
+
+    public void setMatchCounter(int matchCounter) {
+        this.matchCounter = matchCounter;
     }
 }
