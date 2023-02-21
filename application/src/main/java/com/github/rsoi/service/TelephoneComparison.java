@@ -97,6 +97,11 @@ public class TelephoneComparison {
                     }
                     System.out.println("max is"+maximum);
 
+                    for (int index = 0; index<telephonesArrayList.size(); index++) {
+                       if (telephonesArrayList.get(index).getMatchCounter() == maximum){
+                           telephonesArrayList.get(index).getData();
+                       }
+                    }
                 case 3:
                     break;
             }
