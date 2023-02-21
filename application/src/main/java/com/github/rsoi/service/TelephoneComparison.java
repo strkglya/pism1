@@ -12,12 +12,17 @@ public class TelephoneComparison {
         TelephoneCatalog xiaomi = new TelephoneCatalog("Xiaomi Redmi Note 10 Pro",730,6.7, 8,true );
         TelephoneCatalog samsung = new TelephoneCatalog("Samsung galaxy S20",1300,6.2, 8,true );
         TelephoneCatalog iPhone = new TelephoneCatalog("Apple Iphone 13 Pro",2250,6.1, 4,false );
+        TelephoneCatalog huawei = new TelephoneCatalog("Huawei P40 lite",670, 6.4, 6, false);
+        TelephoneCatalog honor = new TelephoneCatalog("HONOR 70",1299, 6.7, 8, false);
+
 
         ArrayList<TelephoneCatalog> telephonesArrayList = new ArrayList<>();
 
         telephonesArrayList.add(xiaomi);
         telephonesArrayList.add(samsung);
         telephonesArrayList.add(iPhone);
+        telephonesArrayList.add(huawei);
+        telephonesArrayList.add(honor);
 
         Scanner scanner = new Scanner(System.in);
         int menuNumber = 0;
@@ -74,7 +79,7 @@ public class TelephoneComparison {
 
                     for (TelephoneCatalog telephoneCatalog : telephonesArrayList) {
                         if (telephoneCatalog.getMatchCounter() == maximum) {
-                            System.out.println("Look at this option\n");
+                            System.out.println("\nTake a look at the following option\n");
                             telephoneCatalog.getData();
                         }
                     }

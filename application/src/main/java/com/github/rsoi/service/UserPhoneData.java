@@ -52,7 +52,7 @@ public class UserPhoneData {
         System.out.println("Is SD card needed?");
         do {
             try {
-                String booleanHelper = "";
+                String booleanHelper;
                 booleanHelper = scanner.next();
                 if (booleanHelper.equals("Yes") || booleanHelper.equals("yes")){
                     userSDAvailable = true;
