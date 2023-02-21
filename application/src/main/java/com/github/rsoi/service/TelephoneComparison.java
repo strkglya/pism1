@@ -14,13 +14,14 @@ public class TelephoneComparison {
         TelephoneCatalog iPhone = new TelephoneCatalog("Apple Iphone 13 Pro",2250,6.1, 4,false );
 
         ArrayList<TelephoneCatalog> telephonesArrayList = new ArrayList<>();
+
         telephonesArrayList.add(xiaomi);
         telephonesArrayList.add(samsung);
         telephonesArrayList.add(iPhone);
 
         Scanner scanner = new Scanner(System.in);
         int menuNumber = 0;
-        String stringToCheck = "";
+        String stringToCheck;
 
         UserPhoneData userPhoneData = new UserPhoneData();
 
@@ -28,7 +29,6 @@ public class TelephoneComparison {
         while (menuNumber!=3){
             System.out.println("Enter 1 to view all options \nEnter 2 to enter your parameters \nEnter 3 to exit");
             stringToCheck = scanner.next();
-
             try {
                 menuNumber = Integer.parseInt(stringToCheck);
             } catch (NumberFormatException e) {

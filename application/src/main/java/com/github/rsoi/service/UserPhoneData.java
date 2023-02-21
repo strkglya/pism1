@@ -35,7 +35,7 @@ public class UserPhoneData {
             try {
                 userSizeOfScreen = Double.parseDouble(scanner.next());
             } catch (NumberFormatException e){
-                System.out.println("Error! Integers only");
+                System.out.println("Error! Screen size must be double!");
             }
         } while (userSizeOfScreen == 0);
 

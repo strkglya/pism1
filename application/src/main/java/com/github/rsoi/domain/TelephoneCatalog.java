@@ -1,8 +1,4 @@
 package com.github.rsoi.domain;
-
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class TelephoneCatalog {
 
     //vars
