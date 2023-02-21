@@ -50,61 +50,40 @@ public class TelephoneComparison {
                     int userRAM = userPhoneData.getUserRAM();
                     Boolean userSDAvailable = userPhoneData.getUserSDAvailable();
 
-                    for (int index = 0; index<telephonesArrayList.size(); index++) {
-                        if (telephonesArrayList.get(index).getPriceOfTheTelephone()>userMinPrice & telephonesArrayList.get(index).getPriceOfTheTelephone()<userMaxPrice) {
-                            telephonesArrayList.get(index).setMatchCounter(telephonesArrayList.get(index).getMatchCounter()+1);
-                            System.out.println("price");
-                            System.out.println("xiaomi"+xiaomi.getMatchCounter());
-                            System.out.println("samsung"+samsung.getMatchCounter());
-                            System.out.println("iphone"+iPhone.getMatchCounter());
+                    for (TelephoneCatalog telephoneCatalog : telephonesArrayList) {
+                        if (telephoneCatalog.getPriceOfTheTelephone() > userMinPrice & telephoneCatalog.getPriceOfTheTelephone() < userMaxPrice) {
+                            increaseCounter(telephoneCatalog);
                         }
-                    }
-
-                    for (int index = 0; index<telephonesArrayList.size(); index++) {
-                        if (telephonesArrayList.get(index).getSizeOfTheScreen().equals(userSizeOfScreen)) {
-                            telephonesArrayList.get(index).setMatchCounter(telephonesArrayList.get(index).getMatchCounter()+1);
-                            System.out.println("size of the screen");
-                            System.out.println("xiaomi"+xiaomi.getMatchCounter());
-                            System.out.println("samsung"+samsung.getMatchCounter());
-                            System.out.println("iphone"+iPhone.getMatchCounter());
+                        if (telephoneCatalog.getSizeOfTheScreen().equals(userSizeOfScreen)) {
+                            increaseCounter(telephoneCatalog);
                         }
-                    }
-
-                    for (int index = 0; index<telephonesArrayList.size(); index++) {
-                        if (telephonesArrayList.get(index).getAmountOfRAM() == userRAM) {
-                            telephonesArrayList.get(index).setMatchCounter(telephonesArrayList.get(index).getMatchCounter()+1);
-                            System.out.println("amount of RAM");
-                            System.out.println("xiaomi"+xiaomi.getMatchCounter());
-                            System.out.println("samsung"+samsung.getMatchCounter());
-                            System.out.println("iphone"+iPhone.getMatchCounter());
+                        if (telephoneCatalog.getAmountOfRAM() == userRAM) {
+                            increaseCounter(telephoneCatalog);
                         }
-                    }
-
-                    for (int index = 0; index<telephonesArrayList.size(); index++) {
-                        if (telephonesArrayList.get(index).getSdCardIsAvailable() == userSDAvailable) {
-                            telephonesArrayList.get(index).setMatchCounter(telephonesArrayList.get(index).getMatchCounter()+1);
-                            System.out.println("SD");
-                            System.out.println("xiaomi"+xiaomi.getMatchCounter());
-                            System.out.println("samsung"+samsung.getMatchCounter());
-                            System.out.println("iphone"+iPhone.getMatchCounter());
+                        if (telephoneCatalog.getSdCardIsAvailable() == userSDAvailable) {
+                            increaseCounter(telephoneCatalog);
                         }
                     }
 
                     int maximum = telephonesArrayList.get(0).getMatchCounter();
-                    for (int index = 0; index<telephonesArrayList.size(); index++) {
-                        if (maximum < telephonesArrayList.get(index).getMatchCounter())
-                            maximum = telephonesArrayList.get(index).getMatchCounter();
-                    }
-                    System.out.println("max is"+maximum);
 
-                    for (int index = 0; index<telephonesArrayList.size(); index++) {
-                       if (telephonesArrayList.get(index).getMatchCounter() == maximum){
-                           telephonesArrayList.get(index).getData();
-                       }
+                    for (TelephoneCatalog telephoneCatalog : telephonesArrayList) {
+                        if (maximum < telephoneCatalog.getMatchCounter())
+                            maximum = telephoneCatalog.getMatchCounter();
+                    }
+
+                    for (TelephoneCatalog telephoneCatalog : telephonesArrayList) {
+                        if (telephoneCatalog.getMatchCounter() == maximum) {
+                            System.out.println("Look at this option\n");
+                            telephoneCatalog.getData();
+                        }
                     }
                 case 3:
                     break;
             }
         }
+    }
+    private static void increaseCounter(TelephoneCatalog telephoneCatalog) {
+        telephoneCatalog.setMatchCounter(telephoneCatalog.getMatchCounter() + 1);
     }
 }
