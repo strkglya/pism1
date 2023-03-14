@@ -1,14 +1,17 @@
 package com.github.rsoi.service;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Scanner;
 
+@Service
 public class UserPhoneData {
 
-    int userMinimumPrice = -1;
-    int userMaximumPrice = -1;
-    int userRAM = 0;
-    Double userSizeOfScreen = 0.0;
-    Boolean userSDAvailable = null;
+    private int userMinimumPrice = -1;
+    private int userMaximumPrice = -1;
+    private int userRAM = 0;
+    private Double userSizeOfScreen = 0.0;
+    private Boolean userSDAvailable = null;
     public void searchForPhone(){
 
         Scanner scanner = new Scanner(System.in);

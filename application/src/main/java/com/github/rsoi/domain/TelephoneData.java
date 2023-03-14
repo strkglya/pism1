@@ -1,5 +1,5 @@
 package com.github.rsoi.domain;
-public class TelephoneCatalog {
+public class TelephoneData {
 
     //vars
     private String nameOfTheTelephone;
@@ -10,7 +10,7 @@ public class TelephoneCatalog {
 
     private int matchCounter = 0;
 
-    public TelephoneCatalog(String nameOfTheTelephone, int priceOfTheTelephone, Double sizeOfTheScreen, int amountOfRAM, Boolean sdCardIsAvailable){
+    public TelephoneData(String nameOfTheTelephone, int priceOfTheTelephone, Double sizeOfTheScreen, int amountOfRAM, Boolean sdCardIsAvailable){
         this.nameOfTheTelephone = nameOfTheTelephone;
         this.priceOfTheTelephone = priceOfTheTelephone;
         this.sizeOfTheScreen = sizeOfTheScreen;
