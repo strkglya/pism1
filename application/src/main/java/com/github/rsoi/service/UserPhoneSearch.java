@@ -1,11 +1,13 @@
 package com.github.rsoi.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Scanner;
 
 @Service
-public class UserPhoneData {
+@RequiredArgsConstructor
+public class UserPhoneSearch {
 
     private int userMinimumPrice = -1;
     private int userMaximumPrice = -1;

@@ -1,12 +1,25 @@
 package com.github.rsoi.domain;
-public class TelephoneData {
 
-    //vars
-    private String nameOfTheTelephone;
-    private int priceOfTheTelephone;
-    private Double sizeOfTheScreen;
-    private int amountOfRAM;
-    private Boolean sdCardIsAvailable;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Data
+@NoArgsConstructor
+@Table(name = "telephones")
+public class TelephoneData {
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name= "increment", strategy= "increment")
+    @Column(name = "id")
+    Long id;
+
+    @Column(name = "nameOfTheTelephone")  private String nameOfTheTelephone;
+    @Column(name = "priceOfTheTelephone") private int priceOfTheTelephone;
+    @Column(name = "sizeOfTheScreen") private Double sizeOfTheScreen;
+    @Column(name = "amountOfRAM") private int amountOfRAM;
+    @Column(name = "sdCardIsAvailable") private Boolean sdCardIsAvailable;
 
     private int matchCounter = 0;
 
@@ -32,14 +45,6 @@ public class TelephoneData {
         }
         System.out.println("-----------------------------");
     }
-
-
-
-
-
-
-
-
 
 
     public String getNameOfTheTelephone() {
