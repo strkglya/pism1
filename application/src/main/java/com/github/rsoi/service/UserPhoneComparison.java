@@ -1,12 +1,16 @@
 package com.github.rsoi.service;
 
-import com.github.rsoi.domain.TelephoneData;
+import com.github.rsoi.domain.TelephoneInfo;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class UserPhoneComparison {
-    UserPhoneSearch userPhoneSearch = new UserPhoneSearch();
-    public void searchForPhone(List<TelephoneData> telephonesArrayList){
+    private final UserPhoneSearch userPhoneSearch;
+    public void searchForPhone(List<TelephoneInfo> telephonesArrayList){
         userPhoneSearch.searchForPhone();
 
         int userMinPrice = userPhoneSearch.getUserMinimumPrice();
@@ -15,32 +19,32 @@ public class UserPhoneComparison {
         int userRAM = userPhoneSearch.getUserRAM();
         Boolean userSDAvailable = userPhoneSearch.getUserSDAvailable();
 
-        for (TelephoneData telephoneData : telephonesArrayList) {
-            if (telephoneData.getPriceOfTheTelephone() > userMinPrice & telephoneData.getPriceOfTheTelephone() < userMaxPrice) {
-                telephoneData.setMatchCounter(telephoneData.getMatchCounter() + 1);
+        for (TelephoneInfo telephoneInfo : telephonesArrayList) {
+            if (telephoneInfo.getPriceOfTheTelephone() > userMinPrice & telephoneInfo.getPriceOfTheTelephone() < userMaxPrice) {
+                telephoneInfo.setMatchCounter(telephoneInfo.getMatchCounter() + 1);
             }
-            if (telephoneData.getSizeOfTheScreen().equals(userSizeOfScreen)) {
-                telephoneData.setMatchCounter(telephoneData.getMatchCounter() + 1);
+            if (telephoneInfo.getSizeOfTheScreen().equals(userSizeOfScreen)) {
+                telephoneInfo.setMatchCounter(telephoneInfo.getMatchCounter() + 1);
             }
-            if (telephoneData.getAmountOfRAM() == userRAM) {
-                telephoneData.setMatchCounter(telephoneData.getMatchCounter() + 1);
+            if (telephoneInfo.getAmountOfRAM() == userRAM) {
+                telephoneInfo.setMatchCounter(telephoneInfo.getMatchCounter() + 1);
             }
-            if (telephoneData.getSdCardIsAvailable() == userSDAvailable) {
-                telephoneData.setMatchCounter(telephoneData.getMatchCounter() + 1);
+            if (telephoneInfo.getSdCardIsAvailable() == userSDAvailable) {
+                telephoneInfo.setMatchCounter(telephoneInfo.getMatchCounter() + 1);
             }
         }
 
         int maximum = telephonesArrayList.get(0).getMatchCounter();
 
-        for (TelephoneData telephoneData : telephonesArrayList) {
-            if (maximum < telephoneData.getMatchCounter())
-                maximum = telephoneData.getMatchCounter();
+        for (TelephoneInfo telephoneInfo : telephonesArrayList) {
+            if (maximum < telephoneInfo.getMatchCounter())
+                maximum = telephoneInfo.getMatchCounter();
         }
 
-        for (TelephoneData telephoneData : telephonesArrayList) {
-            if (telephoneData.getMatchCounter() == maximum) {
+        for (TelephoneInfo telephoneInfo : telephonesArrayList) {
+            if (telephoneInfo.getMatchCounter() == maximum) {
                 System.out.println("\nTake a look at the following option\n");
-                telephoneData.getData();
+                telephoneInfo.getData();
             }
         }
     }

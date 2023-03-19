@@ -8,22 +8,22 @@ import org.hibernate.annotations.GenericGenerator;
 @Data
 @NoArgsConstructor
 @Table(name = "telephones")
-public class TelephoneData {
+public class TelephoneInfo {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name= "increment", strategy= "increment")
     @Column(name = "id")
     Long id;
 
-    @Column(name = "nameOfTheTelephone")  private String nameOfTheTelephone;
-    @Column(name = "priceOfTheTelephone") private int priceOfTheTelephone;
-    @Column(name = "sizeOfTheScreen") private Double sizeOfTheScreen;
-    @Column(name = "amountOfRAM") private int amountOfRAM;
-    @Column(name = "sdCardIsAvailable") private Boolean sdCardIsAvailable;
+    @Column(name = "name")  private String nameOfTheTelephone;
+    @Column(name = "price") private int priceOfTheTelephone;
+    @Column(name = "size") private Double sizeOfTheScreen;
+    @Column(name = "ram") private int amountOfRAM;
+    @Column(name = "sd") private Boolean sdCardIsAvailable;
 
     private int matchCounter = 0;
 
-    public TelephoneData(String nameOfTheTelephone, int priceOfTheTelephone, Double sizeOfTheScreen, int amountOfRAM, Boolean sdCardIsAvailable){
+    public TelephoneInfo(String nameOfTheTelephone, int priceOfTheTelephone, Double sizeOfTheScreen, int amountOfRAM, Boolean sdCardIsAvailable){
         this.nameOfTheTelephone = nameOfTheTelephone;
         this.priceOfTheTelephone = priceOfTheTelephone;
         this.sizeOfTheScreen = sizeOfTheScreen;
