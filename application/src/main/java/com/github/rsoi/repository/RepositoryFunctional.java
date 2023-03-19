@@ -11,12 +11,12 @@ import java.util.Scanner;
 @RequiredArgsConstructor
 public class RepositoryFunctional {
     private final TelephoneRepository telephoneRepository;
-    private String newName = "";
     private int newPrice = -1;
     private int newRAM = 0;
     private Double newSizeOfScreen = 0.0;
     private Boolean newSDAvailable = null;
 
+    @Transactional
     public void showTelephones(){
         var phones= telephoneRepository.findAll();
         for(TelephoneInfo telephoneInfo : phones)
@@ -28,7 +28,7 @@ public class RepositoryFunctional {
     public void addTelephone(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter name of the telephone");
-        newName = scanner.next();
+        String newName = scanner.next();
 
         System.out.println("Enter price");
         do {
@@ -92,5 +92,28 @@ public class RepositoryFunctional {
         } while (id < 0);
         telephoneRepository.deleteById(id);
         System.out.println("Phone was deleted successfully");
+    }
+    @Transactional
+    public void updateTelephone(){
+        Scanner scanner = new Scanner(System.in);
+        long idOfTheTelephone=-1;
+
+        do {
+            System.out.println("Enter the ID of the telephone");
+            String s = scanner.next();
+            try {
+                idOfTheTelephone = Integer.parseInt(s);
+            } catch (NumberFormatException e) {
+                System.out.println("Error! Integer only");
+            }
+        } while (idOfTheTelephone < 0);
+
+        System.out.println("Enter name of the telephone");
+        String newName = scanner.next();
+
+        var update= telephoneRepository.findById(idOfTheTelephone).orElseThrow();
+        update.setNameOfTheTelephone(newName);
+        telephoneRepository.save(update);
+        System.out.println("Name was updated successfully");
     }
 }
