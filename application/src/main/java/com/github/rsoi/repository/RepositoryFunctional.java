@@ -3,12 +3,15 @@ package com.github.rsoi.repository;
 import com.github.rsoi.domain.TelephoneInfo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Scanner;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class RepositoryFunctional {
     private final TelephoneRepository telephoneRepository;
     private int newPrice = -1;
@@ -17,12 +20,9 @@ public class RepositoryFunctional {
     private Boolean newSDAvailable = null;
 
     @Transactional
-    public void showTelephones(){
+    public List<TelephoneInfo> showTelephones(){
         var phones= telephoneRepository.findAll();
-        for(TelephoneInfo telephoneInfo : phones)
-        {
-            telephoneInfo.getData();
-        }
+        return phones;
     }
     @Transactional
     public void addTelephone(){
@@ -77,21 +77,22 @@ public class RepositoryFunctional {
     }
 
     @Transactional
-    public void deleteTelephone(){
-        Scanner scan = new Scanner(System.in);
-        String s;
-        long id=-1;
-        do {
-            System.out.println("Enter id");
-            s = scan.next();
-            try {
-                id = Integer.parseInt(s);
-            } catch (NumberFormatException e) {
-                System.out.println("Int values only");
-            }
-        } while (id < 0);
+    public void deleteTelephone(long id){
         telephoneRepository.deleteById(id);
-        System.out.println("Phone was deleted successfully");
+//        Scanner scan = new Scanner(System.in);
+//        String s;
+//        long id=-1;
+//        do {
+//            System.out.println("Enter id");
+//            s = scan.next();
+//            try {
+//                id = Integer.parseInt(s);
+//            } catch (NumberFormatException e) {
+//                System.out.println("Int values only");
+//            }
+//        } while (id < 0);
+//        telephoneRepository.deleteById(id);
+//        System.out.println("Phone was deleted successfully");
     }
     @Transactional
     public void updateTelephone(){
@@ -100,9 +101,9 @@ public class RepositoryFunctional {
 
         do {
             System.out.println("Enter the ID of the telephone");
-            String s = scanner.next();
+            String scannerString = scanner.next();
             try {
-                idOfTheTelephone = Integer.parseInt(s);
+                idOfTheTelephone = Integer.parseInt(scannerString);
             } catch (NumberFormatException e) {
                 System.out.println("Error! Integer only");
             }
@@ -115,5 +116,18 @@ public class RepositoryFunctional {
         update.setNameOfTheTelephone(newName);
         telephoneRepository.save(update);
         System.out.println("Name was updated successfully");
+    }
+    @Transactional
+    public boolean existsById(long id) {
+        return telephoneRepository.existsById(id);
+    }
+
+    @Transactional
+    public TelephoneInfo findById(long id) {return telephoneRepository.findById(id).orElseThrow();
+    }
+    @Transactional
+    public void savePhone(TelephoneInfo telephoneInfo){
+        log.info("Saving new {}", telephoneInfo);
+        telephoneRepository.save(telephoneInfo);
     }
 }

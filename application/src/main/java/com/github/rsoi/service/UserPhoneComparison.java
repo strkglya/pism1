@@ -10,7 +10,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserPhoneComparison {
     private final UserPhoneSearch userPhoneSearch;
-    public void searchForPhone(List<TelephoneInfo> telephonesArrayList){
+    public List<TelephoneInfo> searchForPhone(List<TelephoneInfo> telephonesArrayList){
         userPhoneSearch.searchForPhone();
 
         int userMinPrice = userPhoneSearch.getUserMinimumPrice();
@@ -47,5 +47,6 @@ public class UserPhoneComparison {
                 telephoneInfo.getData();
             }
         }
+        return telephonesArrayList;
     }
 }

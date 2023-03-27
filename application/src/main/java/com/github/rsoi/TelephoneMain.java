@@ -1,5 +1,6 @@
 package com.github.rsoi;
 
+import com.github.rsoi.domain.TelephoneInfo;
 import com.github.rsoi.repository.RepositoryFunctional;
 import com.github.rsoi.repository.TelephoneRepository;
 import com.github.rsoi.service.UserPhoneComparison;
@@ -11,7 +12,6 @@ import java.util.Scanner;
 
 @SpringBootApplication
 @RequiredArgsConstructor
-
 public class TelephoneMain implements CommandLineRunner {
     private final UserPhoneComparison userPhoneComparison;
     private final RepositoryFunctional repositoryFunctional;
@@ -28,7 +28,6 @@ public class TelephoneMain implements CommandLineRunner {
         String stringToCheck;
 
         System.out.println("Hi! Let's choose a phone");
-
         while (menuNumber!=6){
             System.out.println("Enter 1 to view all options \nEnter 2 to enter your parameters \nEnter 3 to add phone\nEnter 4 to delete phone\nEnter 5 to change the name of the telephone\nEnter 6 to exit");
             stringToCheck = scanner.next();
@@ -49,7 +48,7 @@ public class TelephoneMain implements CommandLineRunner {
                     repositoryFunctional.addTelephone();
                     break;
                 case 4:
-                    repositoryFunctional.deleteTelephone();
+                    repositoryFunctional.deleteTelephone(6);
                     break;
                 case 5:
                     repositoryFunctional.updateTelephone();

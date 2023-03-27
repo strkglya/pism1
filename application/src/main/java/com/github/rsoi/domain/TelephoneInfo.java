@@ -1,8 +1,10 @@
 package com.github.rsoi.domain;
 
 import jakarta.persistence.*;
+import jdk.jfr.SettingDefinition;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+
 
 @Entity
 @Data
@@ -44,53 +46,5 @@ public class TelephoneInfo {
             System.out.println("SD card is not available");
         }
         System.out.println("-----------------------------");
-    }
-
-
-    public String getNameOfTheTelephone() {
-        return nameOfTheTelephone;
-    }
-
-    public void setNameOfTheTelephone(String nameOfTheTelephone) {
-        this.nameOfTheTelephone = nameOfTheTelephone;
-    }
-
-    public int getPriceOfTheTelephone() {
-        return priceOfTheTelephone;
-    }
-
-    public void setPriceOfTheTelephone(int priceOfTheTelephone) {
-        this.priceOfTheTelephone = priceOfTheTelephone;
-    }
-
-    public Double getSizeOfTheScreen() {
-        return sizeOfTheScreen;
-    }
-
-    public void setSizeOfTheScreen(Double sizeOfTheScreen) {
-        this.sizeOfTheScreen = sizeOfTheScreen;
-    }
-
-    public int getAmountOfRAM() {
-        return amountOfRAM;
-    }
-
-    public void setAmountOfRAM(int amountOfRAM) {
-        this.amountOfRAM = amountOfRAM;
-    }
-
-    public Boolean getSdCardIsAvailable() {
-        return sdCardIsAvailable;
-    }
-
-    public void setSdCardIsAvailable(Boolean sdCardIsAvailable) {
-        this.sdCardIsAvailable = sdCardIsAvailable;
-    }
-    public int getMatchCounter() {
-        return matchCounter;
-    }
-
-    public void setMatchCounter(int matchCounter) {
-        this.matchCounter = matchCounter;
     }
 }

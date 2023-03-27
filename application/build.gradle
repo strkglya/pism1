@@ -2,6 +2,8 @@ plugins {
     id 'java'
     id 'idea'
     id 'application'
+    id 'org.springframework.boot' version '3.0.5'
+    id 'io.spring.dependency-management' version '1.1.0'
 }
 
 group = 'com.github.rsoi'
@@ -20,10 +22,15 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.24.2'
     testImplementation(platform('org.junit:junit-bom:5.9.2'))
     testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 
     implementation 'org.springframework.boot:spring-boot-starter:3.0.2'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.0.2'
     implementation 'com.h2database:h2:2.1.214'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
 test {
@@ -33,3 +40,5 @@ test {
 application {
     mainClassName('com.github.rsoi.Main')
 }
+
+compileJava.options.encoding = 'UTF-8'
