@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -39,24 +38,23 @@ public class MainController {
     }
 
     @PostMapping("/telephones/addTelephone")
-    public String phoneAdd( @RequestParam("name") String name,
-                            @RequestParam("ram") int ram,
-                            @RequestParam("size") double size,
-                            @RequestParam("sdCard") String sdCard,
-                            @RequestParam("price") int price
+    public String phoneAdd( @RequestParam("newName") String newName,
+                            @RequestParam("newAmountOfRAM") int newAmountOfRAM,
+                            @RequestParam("newSizeOfScreen") double newSizeOfScreen,
+                            @RequestParam("newSdCardAvailability") String newSdCardAvailability,
+                            @RequestParam("newPrice") int newPrice
     ) {
-        boolean SDCard=false;
-        if (sdCard.equals("да")) {
-            SDCard = true;
+        boolean boolSDCard=false;
+        if (newSdCardAvailability.equals("Yes")) {
+            boolSDCard = true;
         }
-        repositoryFunctional.savePhone(new TelephoneInfo(name,price,size,ram,SDCard));
+        repositoryFunctional.savePhone(new TelephoneInfo(newName,newPrice,newSizeOfScreen,newAmountOfRAM,boolSDCard));
         return "redirect:/telephonesPage";
     }
 
     @GetMapping("/telephonesPage/{id}/edit")
     public String phoneEdit(Model model, @PathVariable(value = "id") long id) {
-        if(!repositoryFunctional.existsById(id))
-        {
+        if (!repositoryFunctional.existsById(id)) {
             return "redirect:/telephonesPage";
         }
         Optional<TelephoneInfo> telephones = Optional.ofNullable(repositoryFunctional.findById(id));
@@ -67,23 +65,23 @@ public class MainController {
     }
     @PostMapping("/telephonesPage/{id}/edit")
     public String phoneUpdate( @PathVariable(value = "id") long id,
-                               @RequestParam("name") String name,
-                               @RequestParam("ram") int ram,
-                               @RequestParam("size") double size,
-                               @RequestParam("sdCard") String sdCard,
-                               @RequestParam("price") int minPrice
+                               @RequestParam("editedName") String editedName,
+                               @RequestParam("editedRAM") int editedRAM,
+                               @RequestParam("editedSizeOfScreen") double editedSizeOfScreen,
+                               @RequestParam("editedSdCard") String editedSdCard,
+                               @RequestParam("editedPrice") int editedPrice
     ) {
-        boolean userSD = false;
-        if (sdCard.equals("да")) {
-            userSD = true;
+        boolean boolSD = false;
+        if (editedSdCard.equals("Yes")) {
+            boolSD = true;
         }
 
         TelephoneInfo phone = repositoryFunctional.findById(id);
-        phone.setNameOfTheTelephone(name);
-        phone.setAmountOfRAM(ram);
-        phone.setSizeOfTheScreen(size);
-        phone.setSdCardIsAvailable(userSD);
-        phone.setPriceOfTheTelephone(minPrice);
+        phone.setNameOfTheTelephone(editedName);
+        phone.setAmountOfRAM(editedRAM);
+        phone.setSizeOfTheScreen(editedSizeOfScreen);
+        phone.setSdCardIsAvailable(boolSD);
+        phone.setPriceOfTheTelephone(editedPrice);
 
         repositoryFunctional.savePhone(phone);
         return "redirect:/telephonesPage";
@@ -100,7 +98,7 @@ public class MainController {
                                 @RequestParam("sdCard") String sdCard,
                                 @RequestParam("minPrice") int minPrice,
                                 @RequestParam("maxPrice") int maxPrice, Model model) {
-        String result;
+
         ArrayList<TelephoneInfo> telephones = new ArrayList<>();
         for (TelephoneInfo telephoneInfo : telephoneRepository.findAll()) {
             if (telephoneInfo.getPriceOfTheTelephone() > minPrice & telephoneInfo.getPriceOfTheTelephone() < maxPrice) {
@@ -114,7 +112,7 @@ public class MainController {
             }
             
             boolean userSD = false;
-            if (sdCard.equals("да")) {
+            if (sdCard.equals("Yes")) {
                 userSD = true;
             }
             if (telephoneInfo.getSdCardIsAvailable() == userSD) {
@@ -134,12 +132,13 @@ public class MainController {
                 telephones.add(telephoneInfo);
             }
         }
-        
+
+        String result;
         if(telephones.isEmpty()){
-            result="Ничего не найдено";
+            result="No results found";
         }
         else {
-            result="Найдено";
+            result="Take a look at the following options";
         }
         model.addAttribute("result", result);
         model.addAttribute("telephones", telephones);

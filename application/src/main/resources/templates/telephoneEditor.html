@@ -11,7 +11,7 @@
         <ul class="nav nav-pills">
             <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home page</a></li>
             <li class="nav-item"><a href="/telephonesPage" class="nav-link">All telephones</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Find a phone</a></li>
+            <li class="nav-item"><a href="/searchPage" class="nav-link">Find a phone</a></li>
         </ul>
     </header>
 </div>
@@ -21,32 +21,32 @@
     <form method="post" class="m-4">
         <div class="form-row">
             <div class="form-group col-2">
-                <label for="name" th:text="Название_телефона">Название телефона</label>
-                <input type="text" required th:value="${telephone.getNameOfTheTelephone()}" class="form-control" id="name" name="name">
+                <label for="editedName" th:text="NameOfTheTelephone">NameOfTheTelephone</label>
+                <input type="text" required th:value="${telephone.getNameOfTheTelephone()}" class="form-control" id="editedName" name="editedName">
             </div>
             <div class="form-group col-2">
-                <label for="ram" th:text="Количество_RAM">Количество RAM</label>
-                <input type="number" required th:value="${telephone.getAmountOfRAM()}" class="form-control" id="ram" name="ram" min="1">
+                <label for="editedRAM" th:text="AmountOfRAM">AmountOfRAM</label>
+                <input type="number" required th:value="${telephone.getAmountOfRAM()}" class="form-control" id="editedRAM" name="editedRAM" min="1">
             </div>
             <div class="form-group col-2">
-                <label for="size" th:text="Размер">Размер</label>
-                <input type="number" required th:value="${telephone.getSizeOfTheScreen()}" oninput="up(this)"  class="form-control" id="size" name="size" step="0.1" min="1">
+                <label for="editedSizeOfScreen" th:text="SizeOfScreen">SizeOfScreen</label>
+                <input type="number" required th:value="${telephone.getSizeOfTheScreen()}" oninput="up(this)"  class="form-control" id="editedSizeOfScreen" name="editedSizeOfScreen" step="0.1" min="1">
 
             </div>
             <div class="form-group col-2">
-                <label for="sdCard" th:text="Наличие_SD-карты">Наличие SD-карты</label>
-                <select class="browser-default custom-select" id="sdCard" name="sdCard">
-                    <option disabled>Выберите наличие SD-карты</option>
-                    <option selected value="да">Да</option>
-                    <option value="нет">Нет</option>
+                <label for="editedSdCard" th:text="IsSDdCardAvailable">IsSDdCardAvailable</label>
+                <select class="browser-default custom-select" id="editedSdCard" name="editedSdCard">
+                    <option disabled>Choose whether SD-card is available</option>
+                    <option selected value="Yes">Yes</option>
+                    <option value="No">No</option>
                 </select>
             </div>
             <div class="form-group col-2">
-                <label for="price" th:text="цена">цена</label>
-                <input type="number" required  th:value="${telephone.getPriceOfTheTelephone()}" class="form-control" id="price" name="price" min="1" step="1">
+                <label for="editedPrice" th:text="Price">Price</label>
+                <input type="number" required  th:value="${telephone.getPriceOfTheTelephone()}" class="form-control" id="editedPrice" name="editedPrice" min="1" step="1">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" th:text="Обновить" >Обновить</button>
+        <button type="submit" class="btn btn-primary" th:text="Update">Update</button>
     </form>
 </div>
 
@@ -56,7 +56,7 @@
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Home page</a></li>
             <li class="nav-item"><a href="/telephonesPage" class="nav-link px-2 text-body-secondary">All telephones</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Find a phone</a></li>
+            <li class="nav-item"><a href="/searchPage" class="nav-link px-2 text-body-secondary">Find a phone</a></li>
         </ul>
         <p class="text-center text-body-secondary">© 2023 STARAYAKEGLYA Company, Inc</p>
     </footer>

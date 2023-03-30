@@ -50,36 +50,36 @@
 <br>
 
 <div class="m-4">
-    <h3 th:text="Добавить_телефон">Добавить телефон</h3></div>
+    <h3 th:text="AddTelephone">Add telephone</h3></div>
 <form action="#" th:action="@{/telephones/addTelephone}" method="post" class="m-4">
     <div class="form-row">
         <div class="form-group col-2">
-            <label for="name" th:text="Название_телефона">Название телефона</label>
-            <input type="text" class="form-control" required  id="name" name="name">
+            <label for="newName" th:text="NameOfTheTelephone">Name of the telephone</label>
+            <input type="text" class="form-control" required  id="newName" name="newName">
         </div>
         <div class="form-group col-2">
-            <label for="ram" th:text="Количество_RAM">Количество RAM</label>
-            <input type="number" class="form-control" required id="ram" name="ram" min="1">
+            <label for="newAmountOfRAM" th:text="AmountOfRAM">Amount Of RAM</label>
+            <input type="number" class="form-control" required id="newAmountOfRAM" name="newAmountOfRAM" min="1">
         </div>
         <div class="form-group col-2">
-            <label for="size" th:text="Размер">Размер</label>
-            <input type="number" oninput="up(this)"  required class="form-control" id="size" name="size" step="0.1" min="1">
+            <label for="newSizeOfScreen" th:text="SizeOfScreen">SizeOfScreen</label>
+            <input type="number" oninput="up(this)"  required class="form-control" id="newSizeOfScreen" name="newSizeOfScreen" step="0.1" min="1">
 
         </div>
         <div class="form-group col-2">
-            <label for="sdCard" th:text="Наличие_SD-карты">Наличие SD-карты</label>
-            <select class="browser-default custom-select" id="sdCard" name="sdCard">
-                <option disabled>Выберите наличие SD-карты</option>
-                <option selected value="да">да</option>
-                <option value="нет">нет</option>
+            <label for="newSdCardAvailability" th:text="IsSDAvailable">IsSDAvailable</label>
+            <select class="browser-default custom-select" id="newSdCardAvailability" name="newSdCardAvailability">
+                <option disabled>Choose whether sd card is available </option>
+                <option selected value="Yes">Yes</option>
+                <option value="No">No</option>
             </select>
         </div>
         <div class="form-group col-2">
-            <label for="price" th:text="Минимальная_цена">Минимальная цена</label>
-            <input type="number" class="form-control" required id="price" name="price" min="1" step="1">
+            <label for="newPrice" th:text="Price">Price</label>
+            <input type="number" class="form-control" required id="newPrice" name="newPrice" min="1" step="1">
         </div>
     </div>
-    <button type="submit" class="btn btn-primary" th:text="Добавить" >Добавить</button>
+    <button type="submit" class="btn btn-primary" th:text="AddTelephone">AddTelephone</button>
 </form>
 </body>
 
