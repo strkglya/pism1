@@ -1,8 +1,7 @@
 package com.github.rsoi.controllers;
 import com.github.rsoi.domain.TelephoneInfo;
 import com.github.rsoi.repository.RepositoryFunctional;
-import com.github.rsoi.repository.TelephoneRepository;
-import com.github.rsoi.service.UserPhoneComparison;
+import com.github.rsoi.service.TelephoneComparator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -19,8 +19,7 @@ import java.util.Optional;
 public class MainController {
 
     private final RepositoryFunctional repositoryFunctional;
-    private final UserPhoneComparison userPhoneComparison;
-    private final TelephoneRepository telephoneRepository;
+    private final TelephoneComparator telephoneComparator;
     @GetMapping("/")
     public String homePage(Model model) {
         model.addAttribute("title", "Home page");
@@ -44,10 +43,7 @@ public class MainController {
                             @RequestParam("newSdCardAvailability") String newSdCardAvailability,
                             @RequestParam("newPrice") int newPrice
     ) {
-        boolean boolSDCard=false;
-        if (newSdCardAvailability.equals("Yes")) {
-            boolSDCard = true;
-        }
+        boolean boolSDCard= newSdCardAvailability.equals("Yes");
         repositoryFunctional.savePhone(new TelephoneInfo(newName,newPrice,newSizeOfScreen,newAmountOfRAM,boolSDCard));
         return "redirect:/telephonesPage";
     }
@@ -71,10 +67,7 @@ public class MainController {
                                @RequestParam("editedSdCard") String editedSdCard,
                                @RequestParam("editedPrice") int editedPrice
     ) {
-        boolean boolSD = false;
-        if (editedSdCard.equals("Yes")) {
-            boolSD = true;
-        }
+        boolean boolSD = editedSdCard.equals("Yes");
 
         TelephoneInfo phone = repositoryFunctional.findById(id);
         phone.setNameOfTheTelephone(editedName);
@@ -99,39 +92,8 @@ public class MainController {
                                 @RequestParam("minPrice") int minPrice,
                                 @RequestParam("maxPrice") int maxPrice, Model model) {
 
-        ArrayList<TelephoneInfo> telephones = new ArrayList<>();
-        for (TelephoneInfo telephoneInfo : telephoneRepository.findAll()) {
-            if (telephoneInfo.getPriceOfTheTelephone() > minPrice & telephoneInfo.getPriceOfTheTelephone() < maxPrice) {
-                telephoneInfo.setMatchCounter(telephoneInfo.getMatchCounter() + 1);
-            }
-            if (telephoneInfo.getSizeOfTheScreen().equals(size)) {
-                telephoneInfo.setMatchCounter(telephoneInfo.getMatchCounter() + 1);
-            }
-            if (telephoneInfo.getAmountOfRAM() == ram) {
-                telephoneInfo.setMatchCounter(telephoneInfo.getMatchCounter() + 1);
-            }
-            
-            boolean userSD = false;
-            if (sdCard.equals("Yes")) {
-                userSD = true;
-            }
-            if (telephoneInfo.getSdCardIsAvailable() == userSD) {
-                telephoneInfo.setMatchCounter(telephoneInfo.getMatchCounter() + 1);
-            }
-        }
-        
-        int maximum = telephoneRepository.findAll().get(0).getMatchCounter();
-
-        for (TelephoneInfo telephoneInfo : telephoneRepository.findAll()) {
-            if (maximum < telephoneInfo.getMatchCounter())
-                maximum = telephoneInfo.getMatchCounter();
-        }
-        
-        for (TelephoneInfo telephoneInfo : telephoneRepository.findAll()) {
-            if (telephoneInfo.getMatchCounter() == maximum) {
-                telephones.add(telephoneInfo);
-            }
-        }
+        List<TelephoneInfo> telephones;
+        telephones = telephoneComparator.searchForPhone(ram,size,sdCard,minPrice,maxPrice);
 
         String result;
         if(telephones.isEmpty()){
