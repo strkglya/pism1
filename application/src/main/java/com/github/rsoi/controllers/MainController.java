@@ -41,10 +41,10 @@ public class MainController {
                             @RequestParam("newAmountOfRAM") int newAmountOfRAM,
                             @RequestParam("newSizeOfScreen") double newSizeOfScreen,
                             @RequestParam("newSdCardAvailability") String newSdCardAvailability,
-                            @RequestParam("newPrice") int newPrice
+                            @RequestParam("newPrice") int newPrice, @RequestParam("newImage") String newImage
     ) {
         boolean boolSDCard= newSdCardAvailability.equals("Yes");
-        repositoryFunctional.savePhone(new TelephoneInfo(newName,newPrice,newSizeOfScreen,newAmountOfRAM,boolSDCard));
+        repositoryFunctional.savePhone(new TelephoneInfo(newName,newPrice,newSizeOfScreen,newAmountOfRAM,boolSDCard,newImage));
         return "redirect:/telephonesPage";
     }
 
@@ -65,7 +65,8 @@ public class MainController {
                                @RequestParam("editedRAM") int editedRAM,
                                @RequestParam("editedSizeOfScreen") double editedSizeOfScreen,
                                @RequestParam("editedSdCard") String editedSdCard,
-                               @RequestParam("editedPrice") int editedPrice
+                               @RequestParam("editedPrice") int editedPrice,
+                               @RequestParam("editedImage") String editedImage
     ) {
         boolean boolSD = editedSdCard.equals("Yes");
 
@@ -75,6 +76,7 @@ public class MainController {
         phone.setSizeOfTheScreen(editedSizeOfScreen);
         phone.setSdCardIsAvailable(boolSD);
         phone.setPriceOfTheTelephone(editedPrice);
+        phone.setImageOfTheTelephone(editedImage);
 
         repositoryFunctional.savePhone(phone);
         return "redirect:/telephonesPage";
@@ -90,7 +92,8 @@ public class MainController {
                                 @RequestParam("size") double size,
                                 @RequestParam("sdCard") String sdCard,
                                 @RequestParam("minPrice") int minPrice,
-                                @RequestParam("maxPrice") int maxPrice, Model model) {
+                                @RequestParam("maxPrice") int maxPrice,
+                                Model model) {
 
         List<TelephoneInfo> telephones;
         telephones = telephoneComparator.searchForPhone(ram,size,sdCard,minPrice,maxPrice);

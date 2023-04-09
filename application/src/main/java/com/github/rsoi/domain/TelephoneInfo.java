@@ -21,13 +21,14 @@ public class TelephoneInfo {
     @Column(name = "size") private Double sizeOfTheScreen;
     @Column(name = "ram") private int amountOfRAM;
     @Column(name = "sd") private Boolean sdCardIsAvailable;
-
+    @Column(name = "image") private String imageOfTheTelephone;
     private int matchCounter = 0;
-    public TelephoneInfo(String nameOfTheTelephone, int priceOfTheTelephone, Double sizeOfTheScreen, int amountOfRAM, Boolean sdCardIsAvailable){
+    public TelephoneInfo(String nameOfTheTelephone, int priceOfTheTelephone, Double sizeOfTheScreen, int amountOfRAM, Boolean sdCardIsAvailable, String imageOfTheTelephone){
         this.nameOfTheTelephone = nameOfTheTelephone;
         this.priceOfTheTelephone = priceOfTheTelephone;
         this.sizeOfTheScreen = sizeOfTheScreen;
         this.amountOfRAM = amountOfRAM;
         this.sdCardIsAvailable = sdCardIsAvailable;
+        this.imageOfTheTelephone = imageOfTheTelephone;
     }
 }

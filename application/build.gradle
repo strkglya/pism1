@@ -4,6 +4,7 @@ plugins {
     id 'application'
     id 'org.springframework.boot' version '3.0.5'
     id 'io.spring.dependency-management' version '1.1.0'
+    id 'jacoco'
 }
 
 group = 'com.github.rsoi'
@@ -16,6 +17,7 @@ repositories {
 
 dependencies {
 
+    testImplementation 'junit:junit:4.13.1'
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
@@ -42,3 +44,15 @@ application {
 }
 
 compileJava.options.encoding = 'UTF-8'
+
+jacocoTestReport {
+    dependsOn test
+
+    reports {
+        csv.enabled true
+        xml.required = true
+        csv.required = true
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+
+}

@@ -25,6 +25,10 @@
                 <input type="text" required th:value="${telephone.getNameOfTheTelephone()}" class="form-control" id="editedName" name="editedName">
             </div>
             <div class="form-group col-2">
+                <label for="editedName" th:text="ImageOfTheTelephone">ImageOfTheTelephone</label>
+                <input type="text" required th:value="${telephone.getImageOfTheTelephone()}" class="form-control" id="editedImage" name="editedImage">
+            </div>
+            <div class="form-group col-2">
                 <label for="editedRAM" th:text="AmountOfRAM">AmountOfRAM</label>
                 <input type="number" required th:value="${telephone.getAmountOfRAM()}" class="form-control" id="editedRAM" name="editedRAM" min="1">
             </div>

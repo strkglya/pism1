@@ -59,6 +59,7 @@
     <tr>
         <th scope="col" th:text="Id">Id</th>
         <th scope="col" th:text="NameOfTheTelephone">NameOfTheTelephone</th>
+        <th scope="col" th:text="ImageOfTheTelephone">ImageOfTheTelephone</th>
         <th scope="col" th:text="AmountOfRAM">AmountOfRAM</th>
         <th scope="col" th:text="SizeOfScreen">SizeOfScreen</th>
         <th scope="col" th:text="IsSDCardAvailable">IsSDCardAvailable</th>
@@ -69,6 +70,7 @@
     <tr th:each="telephone : ${telephones}">
         <th th:text="${telephone.getId()}"></th>
         <td th:text="${telephone.getNameOfTheTelephone()}"></td>
+        <td><img height="180px" width="150px" th:src="${telephone.getImageOfTheTelephone()}" th:alt="ImageOfTheTelephone"></td>
         <td th:text="${telephone.getAmountOfRAM()}"></td>
         <td th:text="${telephone.getSizeOfTheScreen()}"></td>
         <td th:text="${telephone.getSdCardIsAvailable()}"></td>
